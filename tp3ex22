@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// تعريف هيكلية العقدة
+typedef struct element {
+    int valeur;
+    struct element* suivant;
+} element;
+
+// دالة لإنشاء قائمة فارغة
+      element* creerListe() {
+          return NULL; // قائمة فارغة تمثلها NULL
+}
+            if (*liste == NULL) {
+               *liste = nouveau; \\إذا كانت القائمة فارغة، يصبح العنصر الأول
+  }           else {
+                element* temp = *liste;
+                 while (temp->suivant != NULL) { // الانتقال إلى نهاية القائمة
+                       temp = temp->suivant;
+        }
+                          temp->suivant = nouveau; // إضافة العنصر الجديد
+    }
+}
+
+// دالة لبناء قائمة من جدول
+void chargerListe(int Tab[], int taille, element** liste) {
+    for (int i = 0; i < taille; i++) {
+       
+}
+}
+// دالة لطباعة عناصر القائمة
+void afficherListe(element* liste) {
+    if (liste == NULL) {
+        printf("La liste est vide.\n");
+        return;
+    }
+
+    element* temp = liste;
+    while (temp != NULL) {
+        printf("%d -> ", temp->valeur); // طباعة كل عنصرالانتقال الى العنصر التالي
+        temp = temp->suivant;          
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    int Tab[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // جدول يحتوي على 10 عناصر
+    element* liste = creerListe(); // إنشاء قائمة فارغة
+
+    // بناء القائمة انطلاقًا من الجدول
+    chargerListe(Tab, 10, &liste);
+
+    // عرض محتويات القائمة
+    printf("La liste construite :\n");
+    afficherListe(liste);
+
+    return 0;
+}
