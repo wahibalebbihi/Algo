@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// تعريف هيكلية العقدة
+    typedef struct element {
+    int valeur;
+    struct element* suivant;
+} element;
+
+// دالة لإنشاء قائمة فارغة
+      element* creerListe() {
+       return NULL; // قائمة فارغة يتم تمثيلها بمؤشر NULL
+}
+
+// دالة لطباعة عناصر القائمة
+    void afficherListe(element* liste){ 
+    if (liste == NULL) {
+\\ذا كانت القائمة فارغة يطبع رسالة
+        printf("La liste est vide.\n");
+        return;
+    }
+
+       element* temp = liste;
+           while (temp != NULL) {
+           printf("%d -> ", temp->valeur);
+// طباعة كل عنصر الانتقال الى العقدة التالية
+           temp = temp->suivant;          
+    }
+            printf("NULL\n");
+}
+
+     int main() {
+    // إنشاء قائمة فارغة
+      element* liste = creerListe();
+
+    // عرض القائمة
+      printf("La liste creer est :\n");
+       afficherListe(liste);
+
+       return 0;
+}
