@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// تعريف هيكلية العقدة
+typedef struct element {
+    int valeur;
+    struct element* suivant;
+} element;
+
+// دالة لإنشاء قائمة فارغة
+element* creerListe() {
+    return NULL;
+}
+
+// دالة لإضافة عنصر إلى نهاية القائمة
+void ajouterElement(element** liste, int valeur) {
+    element* nouveau = (element*)malloc(sizeof(Node));
+    nouveau->valeur = valeur;
+    nouveau->suivant = NULL;
+
+    if (*liste == NULL) {
+        *liste = nouveau;
+    } else {
+        element* temp = *liste;
+        while (temp->suivant != NULL) {
+            temp = temp->suivant;
+        }
+        temp->suivant = nouveau;
+    }
+}
+
+// دالة لحذف العنصر الأخير من القائمة
+Node* supprimerEnFin(Node* liste) {
+    if (liste == NULL) {
+        printf("La liste est vide, rien à supprimer.\n");
+        return NULL; // القائمة فارغة
+    }
+
+    if (liste->suivant == NULL) {
+        free(liste); // إذا كان هناك عنصر واحد فقط
+        return NULL;
+    }
+
+         element* temp = liste;
+         while (temp->suivant->suivant != NULL) {
+            temp = temp->suivant; // الانتقال إلى ما قبل العقدة الأخيرة
+    }
+
+    free(temp->suivant); // حذف العقدة الأخيرة
+    temp->suivant = NULL; // تحديث المؤشر إلى NULL
+
+    return liste; // إرجاع القائمة الجديدة
+}
+
+// دالة لطباعة عناصر القائمة
+void afficherListe(element* liste) {
+    if (liste == NULL) {
+        printf("La liste est vide.\n");
+        return;
+    }
+
+    element* temp = liste;
+    while (temp != NULL) {
+        printf("%d -> ", temp->valeur);
+        temp = temp->suivant;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    // إنشاء قائمة وإضافة عناصر إليها
+    Node* liste = creerListe();
+    ajouterElement(&liste, 1);
+    ajouterElement(&liste, 2);
+    ajouterElement(&liste, 3);
+    ajouterElement(&liste, 4);
+    ajouterElement(&liste, 5);
+
+    // عرض القائمة الأصلية
+    printf("Liste originale :\n");
+    afficherListe(liste);
+
+    // حذف العنصر الأخير
+    liste = supprimerEnFin(liste);
+
+    // عرض القائمة بعد الحذف
+    printf("Liste après suppression de l'élément en fin :\n");
+    afficherListe(liste);
+
+    return 0;
+}
