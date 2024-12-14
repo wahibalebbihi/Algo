@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+// دالة لحساب طول السلسلة النصية
+int Longueur(char *ch) {
+    int longueur = 0; // طول السلسلة يبدأ من 0
+    while (ch[longueur] != '\0') {\\يبقاء يكرر حتى النهاية
+        longueur++; // زيادة الطول مع كل حرف
+    }
+    return longueur; 
+}
+
+int main() {
+    char chaine[100]; // إنشاء مصفوفة لتخزين السلسلة النصية
+        printf("Entrez une chaîne de caractères : ");
+        gets(chaine, 100, stdin); // 
+
+    int i = 0;
+    while (chaine[i] != '\0') {
+        if (chaine[i] == '\n') {
+            chaine[i] = '\0';
+            break;
+        }
+        i++;
+    }
+
+    // استدعاء الدالة لحساب الطول
+    int longueur = Longueur(chaine);
+
+    printf("La longueur de la chaîne est : %d\n", longueur);
+
+    return 0;
+}
