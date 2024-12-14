@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int* ajouterEnDebut(int* L1, int taille, int valeur, int* nouvelleTaille) {
+    // زيادة حجم المصفوفة بمقدار عنصر واحد
+    *nouvelleTaille = taille + 1;
+    int* L2 = (int*)malloc((*nouvelleTaille) * sizeof(int));
+    
+         if (L2 == NULL) {
+          printf("\n");
+          exit(1);
+    }
+    
+    // إضافة القيمة الجديدة في البداية
+    L2[0] = valeur;
+
+    // نسخ باقي عناصر L1 إلى L2
+    for (int i = 0; i < taille; i++) {
+        L2[i + 1] = L1[i];
+    }
+
+    return L2;
+}
+
+int main() {
+    int L1[] = {10, 20, 30}; // المصفوفة الأصلية
+    int taille = sizeof(L1) / sizeof(L1[0]);
+    int nouvelleTaille;
+    
+    int* L2 = ajouterEnDebut(L1, taille, 40, &nouvelleTaille);
+
+    // طباعة المصفوفة الجديدة
+    printf("المصفوفة L2: ");
+    for (int i = 0; i < nouvelleTaille; i++) {
+        printf("%d ", L2[i]);
+    }
+           printf("\n");
+
+    // تحرير الذاكرة المخصصة
+          free(L2);
+        return 0;
+}
