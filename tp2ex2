@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char* ChargerChaine(int N) {
+    
+    char* chaine = (char*)malloc((N + 1) * sizeof(char));
+     if (chaine == NULL) { // Vérification de l'allocation mémoire
+        printf("Erreur d'allocation mémoire.\n");
+        exit(1);\\انهاء البرانامج في حالة الفشل 
+    }
+          printf("Entrez une chaîne de %d caractères : ", N);
+    
+        gets(chaine, N + 1, stdin);\\ قراءة سلسلة نصي من المستخدم
+            while (chaine[i] != '\0') {
+             if (chaine[i] == '\n') {
+               chaine[i] = '\0';
+               break;
+        }
+        i++;
+    }
+    
+    return chaine; 
+}
+
+int main() {
+    int N;
+      printf("Entrez la taille de la chaîne : ");\\عرض السلسلة نصية
+      scanf("%d", &N);
+       getchar();
+    char* chaine = ChargerChaine(N);
+    printf("Vous avez saisi : %s\n", chaine);
+    free(chaine);
+    
+    return 0;
+}
